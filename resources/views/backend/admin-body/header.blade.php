@@ -110,12 +110,15 @@
                         </li>
                     </ul>
                 </li>
+                @php
+                    $adminProfile = App\Models\Admin::findOrFail(Auth::id());
+                @endphp
 
                 <!-- User Account-->
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
                         data-toggle="dropdown" title="User">
-                        <img src="{{ ( !empty($adminProfile->profile_photo_path)) ?  url('backend-assets/profile_photo/'.$adminProfile->profile_photo_path): url('backend-assets/profile_photo/default/default_img.png') }}" alt="">
+                        <img class="avatar avatar-xxl avatar-bordered" src="{{ ( !empty($adminProfile->profile_photo_path)) ?  url('backend-assets/profile_photo/'.$adminProfile->profile_photo_path): url('backend-assets/profile_photo/default/default_img.png') }}" alt="">
                     </a>
                     <ul class="dropdown-menu animated flipInX">
                         <li class="user-body">

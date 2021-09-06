@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="text-xs-right">
-                                <button type="submit" class="btn btn-rounded btn-info">Save Change</button>
+                                <input type="submit" class="btn btn-rounded btn-info" value="Save Change">
                             </div>
                         </form>
 

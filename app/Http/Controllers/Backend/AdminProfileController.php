@@ -14,19 +14,20 @@ class AdminProfileController extends Controller
 {
 
     public function adminProfile(){
+        $userId = Auth::id();
         return view('backend.admin-profile.admin-profile', [
-            'adminProfile' => Admin::findOrFail(1),
+            'adminProfile' => Admin::findOrFail($userId),
         ]);
     }
 
     public function adminProfileEdit(){
         return view('backend.admin-profile.admin-profile-edit', [
-            'adminProfile' => Admin::findOrFail(1),
+            'adminProfile' => Admin::findOrFail(Auth::id()),
         ]);
     }
 
     public function adminProfileUpdate(Request $request){
-        $adminProfile = Admin::findOrFail(1);
+        $adminProfile = Admin::findOrFail(Auth::id());
         $adminProfile->name = $request->name;
 
         // Profile Photo Updated.
@@ -50,7 +51,7 @@ class AdminProfileController extends Controller
 
     public function adminPasswordEdit(Request $request){
         return view('backend.admin-profile.admin-password', [
-            'adminProfile' => Admin::findOrFail(1),
+            'adminProfile' => Admin::findOrFail(Auth::id()),
         ]);
 
     }
@@ -62,9 +63,9 @@ class AdminProfileController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $hashPass = Admin::findOrFail(1)->password;
+        $hashPass = Admin::findOrFail(Auth::id())->password;
         if(Hash::check($request->oldpassword, $hashPass)){
-            $admin = Admin::findOrFail(1);
+            $admin = Admin::findOrFail(Auth::id());
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::logout();

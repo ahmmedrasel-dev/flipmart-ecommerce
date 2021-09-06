@@ -1,4 +1,7 @@
 @extends('backend.admin-master')
+@section('d_active')
+    active
+@endsection
 @section('content')
     <!-- Main content -->
     <section class="content">
