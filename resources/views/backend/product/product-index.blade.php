@@ -27,7 +27,7 @@
                                <th>Category</th>
                                <th>Price</th>
                                <th>Qty</th>
-                               <th>Image</th>
+                               <th>Thumbnail</th>
                                <th>Created</th>
                                <th width="190" style="text-align: center">Action</th>
                            </tr>
@@ -38,10 +38,10 @@
                                     <td>{{ $products->firstitem() + $key }}</td>
                                     <td>{{ $item->product_code ?? '' }}</td>
                                     <td>{{ $item->product_name ?? '' }}</td>
-                                    <td>{{ $item->category_id ?? '' }}</td>
-                                    <td>{{ $item->Price ?? '' }}</td>
+                                    <td>{{ $item->category->name ?? '' }}</td>
+                                    <td>{{ $item->selling_price ?? '' }}</td>
                                     <td>{{ $item->product_qty ?? '' }}</td>
-                                    <td>{{ $item->thmbnail ?? '' }}</td>
+                                    <td><img src="{{ asset($item->thmbnail) }}" alt="" width="80px"></td>
                                     <td>{{ $item->created_at->diffForHumans() }}</td>
                                     <td class="text-center">
                                         <a href="{{  route('product.edit', $item->id ) }}" class="btn btn-primary">Edit</a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\SubsubcategoryController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +42,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum,admin', 'verified
 });
 
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('backend.admin-dashboard');
-})->name('adminDashboard');
+
 
 // User All Routes Start from here.
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
@@ -51,6 +50,10 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 })->name('dashboard');
 
 Route::get('/', [IndexController::class, 'index']);
+Route::get('proudct/{slug}', [IndexController::class, 'product_details'])->name('product.details');
+// Ajax Request For Product Model View
+// Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewModal']);
+
 Route::get('/user/logout', [IndexController::class, 'userLogout'])->name('user.logout');
 Route::get('/user/profile', [IndexController::class, 'userProfile'])->name('user.profile');
 Route::post('/user/profile/store', [IndexController::class, 'userProfileStore'])->name('user.profile.store');
@@ -59,7 +62,12 @@ Route::post('user/password/store', [IndexController::class, 'userPasswrodStore']
 
 //  Brand All Route Here.
 
-Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum,admin', 'verified']], function(){
+Route::middleware('auth:admin')->prefix('admin')->group( function(){
+
+    Route::middleware(['auth:sanctum,admin', 'verified'])->get('/dashboard', function () {
+        return view('backend.admin-dashboard');
+    })->name('adminDashboard');
+
     // All Brand Route
     Route::resource('brand', BrandController::class);
     Route::get('/brand-trash', [BrandController::class, 'brand_trash'])->name('brand.trash');
@@ -93,6 +101,11 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['auth:sanctum,admin', 'verified
 
     // All Product Routes
     Route::resource('product', ProductController::class);
+    Route::post('product-multiimg-update', [ProductController::class, 'storeProductImg'])->name('productimage.Store');
+    Route::get('product-multiimg-delete/{id}', [ProductController::class, 'multiimgDelete'])->name('productimage.delete');
+    Route::get('product-trash', [ProductController::class, 'productTrash'])->name('product.trash');
+    Route::get('product-restore/{id}', [ProductController::class, 'productRestore'])->name('product.restore');
+    Route::get('product-delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
     // Ajax Request Route.
     Route::get('subcategory/ajax/{subcatid}',[ProductController::class, 'ajax_subsubcat_request']);
 });

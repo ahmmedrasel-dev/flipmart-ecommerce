@@ -15,10 +15,11 @@ class CreateProductAttributesTable extends Migration
     {
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->string('attributeset_name');
-            $table->string('value');
+            $table->foreignId('product_id')->nullable();
+            $table->string('attributeset_id')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

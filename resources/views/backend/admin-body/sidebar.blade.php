@@ -71,7 +71,7 @@
             <li class="treeview @yield('ecom_active')">
                 <a href="#">
                     <i class="mdi mdi-file-tree"></i>
-                    <span>E-commerces</span>
+                    <span>Product Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -80,6 +80,7 @@
                     <li class="@yield('attribute_active')"><a href="{{ route('attribute.index') }}"><i class="ti-more"></i>Add Attribute</a></li>
                     <li class="@yield('attribute_active')"><a href="{{ route('attributevalue.view') }}"><i class="ti-more"></i>Add Attri-value</a></li>
                     <li class="@yield('product_active')"><a href="{{ route('product.index') }}"><i class="ti-more"></i>All Products</a></li>
+                    <li class="@yield('product_trash_active')"><a href="{{ route('product.trash') }}"><i class="ti-more"></i>Trash</a></li>
                 </ul>
             </li>
 

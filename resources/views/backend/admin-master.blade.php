@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('backend-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('backend-assets/css/skin_color.css') }}">
 
+
     @yield('extra_css')
 
     <!-- Toastr Style-->
@@ -63,6 +64,7 @@
     <script src="{{ asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js') }}"></script>
     <script src="{{ asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
     <script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+
 
 
     <!-- Sunny Admin App -->

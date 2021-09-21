@@ -38,6 +38,14 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <h5>Category Icon <span class="text-danger">Font-aswesome Icon name(*)</span></h5>
+                                    <input type="text" id="icon" name="icon" class="form-control" value="{{ $categories->icon }}">
+                                    @error('icon')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <h5>Category Image Upload <span class="text-danger">*</span></h5>
                                     {{-- Preview Image --}}
                                     <div class="pb-3">

@@ -53,6 +53,7 @@ class CategoryController extends Controller
             $category = new Category;
             $category->name = $request->name;
             $category->slug = $request->slug;
+            $category->icon = $request->icon;
             $category->image = $imgLocation;
             $category->save();
         }else{
@@ -106,14 +107,16 @@ class CategoryController extends Controller
         if($request->hasFile('category_image')){
             $image = $request->file('category_image');
             $namGenerate = Str::slug($request->name).'-'.random_int(1, 1000).'.'.$image->getClientOriginalExtension();
+            $category->icon = $request->icon;
             $oldImage = $category->image;
-            if($oldImage !== null){
+            if($oldImage != null){
                 unlink($oldImage);
             }else{
                 Image::make($image)->save('backend-assets/upload-images/category/'.$namGenerate);
                 $imgLocation = 'backend-assets/upload-images/category/'.$namGenerate;
                 $category->name = $request->name;
                 $category->slug = $request->slug;
+                $category->icon = $request->icon;
                 $category->image = $imgLocation;
                 $category->save();
             }
@@ -121,11 +124,13 @@ class CategoryController extends Controller
             $imgLocation = 'backend-assets/upload-images/category/'.$namGenerate;
             $category->name = $request->name;
             $category->slug = $request->slug;
+            $category->icon = $request->icon;
             $category->image = $imgLocation;
             $category->save();
         }else{
             $category->name = $request->name;
             $category->slug = $request->slug;
+            $category->icon = $request->icon;
             $category->save();
         }
 

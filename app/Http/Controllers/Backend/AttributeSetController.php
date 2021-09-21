@@ -11,14 +11,14 @@ class AttributeSetController extends Controller
 {
     public function index(){
         return view('backend.attribute.attribute', [
-            'attributes' => AttributeSet::orderBy('attribute_name', 'asc')->get(),
+            'attributes' => AttributeSet::orderBy('attribute_name', 'asc')->paginate(10),
         ]);
     }
 
     public function attributeValueView(){
         return view('backend.attribute.attribute-value', [
             'attributeName' => AttributeSet::orderBy('attribute_name', 'asc')->get(),
-            'attributevalue' => AttributeValue::with('attributeName')->orderBy('attributeset_id', 'asc')->get(),
+            'attributevalue' => AttributeValue::with('attributeName')->orderBy('attributeset_id', 'asc')->paginate(10),
         ]);
     }
 

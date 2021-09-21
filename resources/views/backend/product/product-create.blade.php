@@ -110,6 +110,7 @@
                                             rows="3"></textarea>
                                     </div>
                                 </div>
+
                                 <div class="col-3">
                                     <div class="form-group">
                                         <h5>Product Tag<span class="text-danger">*</span></h5>
@@ -175,7 +176,7 @@
                                         <select class="form-control" name="value[]" id="value">
                                             <option value="" disabled selected>Select Value</option>
                                             @foreach ($attributeValue as $item )
-                                            <option value="{{ $item->id }}">{{ $item->value }}</option>
+                                                <option value="{{ $item->value }}">{{ $item->value }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -247,11 +248,17 @@
 
                                     </div>
                                 </div>
+                                <div class="col-12" id="openExDate" style="display: none">
+                                    <div class="form-group">
+                                        <label for="date1">Expire Offer Date :</label>
+                                        <input type="date" class="form-control" id="demo" name="offer_exp_date">
+                                    </div>
+                                </div>
                             </div>
 
                             {{-- Submit Button --}}
                             <div class="text-xs-right">
-                                <input type="submit" class="btn btn-rounded btn-info" value="Save Subcategory">
+                                <input type="submit" class="btn btn-rounded btn-info" value="Save Product">
                             </div>
                         </form>
                     </div>
@@ -266,7 +273,9 @@
     </section>
 @endsection
 @section('footer_js')
+
     <script type="text/javascript">
+
         $('#image').change(function(e) {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -287,6 +296,7 @@
     <script src="{{ asset('assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
 
     <script>
+
 
          $('#image').change(function(e){
             var reader = new FileReader();
@@ -379,7 +389,15 @@
         CKEDITOR.replace('long_details', options)
     </script>
 
+    <script>
+         // toggle
+         $('#hotdeals').on("click", function() {
+            $('#openExDate').slideToggle();
+        })
+    </script>
+
     <script type="text/javascript">
+
         // Add Remove field.
         var buttonAdd = $("#add-button");
         var buttonRemove = $("#remove-button");

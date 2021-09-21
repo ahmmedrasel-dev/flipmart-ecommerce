@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('subcategory_id');
             $table->foreignId('subsubcategory_id')->nullable();
-            $table->foreignId('brand_id');
+            $table->foreignId('brand_id')->nullable();
             $table->string('product_name');
             $table->string('product_slug');
             $table->bigInteger('product_code');

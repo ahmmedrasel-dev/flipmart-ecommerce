@@ -29,7 +29,7 @@
                                 <tbody>
                                     @foreach ($attributevalue as $key => $item)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $attributevalue->firstItem() + $key }}</td>
                                             <td>{{ $item->attributeName->attribute_name }}</td>
                                             <td>{{ $item->value }}</td>
                                             <td>{{ $item->created_at->diffForHumans() }}</td>
@@ -41,6 +41,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $attributevalue->links() }}
                         </div>
                     </div>
                     <!-- /.box-body -->
